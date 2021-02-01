@@ -1,0 +1,62 @@
+﻿@using Models.Request.Forward;
+@using Models.Request;
+
+    <div class="card">
+        <div class="card-header text-white bg-primary">
+            Order Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Source Country</label>
+                        <InputText @bind-Value="Order.SourceCountryIso" class="form-control" />
+                        <ValidationMessage For=@(() => Order.SourceCountryIso) />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Declaration Country</label>
+                        <InputText @bind-Value="Order.DeclarationCountryIso" class="form-control" />
+                        <ValidationMessage For=@(() => Order.DeclarationCountryIso) />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-header d-flex align-items-center justify-content-between text-white bg-secondary">
+            Items
+            <button class="btn btn-outline-light float-right pt-0 pb-0" type="button" @onclick="@AddItem">+</button>
+        </div>
+
+        <div class="card-body">
+
+            @foreach (var item in Order.Items)
+            {
+                <ItemFormComponent Item="@item" DeleteItem="@(() => DeleteItem(item))" />
+            }
+
+            <ValidationMessage For=@(() => Order.Items) style="margin-bottom:20px" />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+    </div>
+
+
+@code {
+
+    [Parameter]
+    public Order Order { get; set; } = new Order();
+
+    private void AddItem()
+    {
+        Order.Items.Add(new Item());
+    }
+
+    private void DeleteItem(Item item)
+    {
+        Order.Items.Remove(item);
+        StateHasChanged();
+    }
+}

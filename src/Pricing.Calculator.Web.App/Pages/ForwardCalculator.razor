@@ -1,0 +1,55 @@
+﻿@page "/"
+@page "/forward"
+
+@using Pricing.Calculator.Web.App.Services
+@using Pricing.Calculator.Web.App.Models.Response
+
+@inject IForwardCalculationService CalculationService
+
+<EditForm Model="@order" OnValidSubmit="@SubmitRequest">
+
+    <ObjectGraphDataAnnotationsValidator />
+    <ForwardOrderFormComponent Order="@order" />
+    <CalculatedChargesComponent Calculation="@calculation" Status="@status" />
+
+</EditForm>
+
+@code {
+
+    private Models.Request.Forward.Order order = new Models.Request.Forward.Order();
+    private Calculation? calculation;
+    private string? status = "Waiting...";
+
+    private async Task SubmitRequest()
+    {
+        var result = await CalculationService.Calculate(order, default);
+
+        if (result.Successful)
+            calculation = (result as OperationResult<Calculation>)?.Data;
+        else
+        {
+            calculation = null;
+
+            var errorResult = result as OperationResult;
+
+            if (errorResult?.Errors == null)
+                status = "It looks like something went wrong!";
+            else
+            {
+                var sb = new System.Text.StringBuilder();
+
+                sb.Append($"<p style=\"color:red\">Unsuccesful request.</p>");
+
+                foreach (var entry in errorResult.Errors)
+                {
+                    foreach (var error in entry.Value)
+                    {
+                        sb.Append($"<p style=\"color:red\">{entry.Key}: {error}</p>");
+                    }
+                }
+
+                status = sb.ToString();
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+﻿@using Models.Request;
+
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>Quantity</label>
+            <InputNumber @bind-Value="Item.Quantity" class="form-control" />
+            <ValidationMessage For=@(() => Item.Quantity) />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label>Weight</label>
+            <InputNumber @bind-Value="Item.Weight" class="form-control" />
+            <ValidationMessage For=@(() => Item.Weight) />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label class="text-nowrap">Duty Rate</label>
+            <InputNumber @bind-Value="Item.DutyRate" class="form-control" />
+            <ValidationMessage For=@(() => Item.DutyRate) />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label class="text-nowrap">Vat Rate</label>
+            <InputNumber @bind-Value="Item.VatRate" class="form-control"></InputNumber>
+            <ValidationMessage For=@(() => Item.VatRate) />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label class="text-nowrap">Item Price</label>
+            <InputNumber @bind-Value="Item.InputPrice.Value" class="form-control" />
+            <ValidationMessage For=@(() => Item.InputPrice.Value) />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label class="text-nowrap">Delivery Price</label>
+            <InputNumber @bind-Value="Item.InputDeliveryPrice.Value" class="form-control" />
+            <ValidationMessage For=@(() => Item.InputDeliveryPrice.Value) />
+        </div>
+    </div>
+    <div class="col">
+        <button type="button" @onclick="@InvokeDeleteItem" class="btn btn-block btn-danger" style="min-width:50px; max-width:50px; margin-top:32px"><span class="oi oi-trash" /></button>
+    </div>
+</div>
+<hr />
+
+@code {
+
+    [Parameter]
+    public Item Item { get; set; } = new Item();
+
+    [Parameter]
+    public Action? DeleteItem { get; set; }
+
+    private void InvokeDeleteItem()
+    {
+        DeleteItem?.Invoke();
+    }
+}

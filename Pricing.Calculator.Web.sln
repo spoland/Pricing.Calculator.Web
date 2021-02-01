@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{603E418C-8AAD-4EFE-80D3-474F7362C8AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricing.Calculator.Web.App", "src\Pricing.Calculator.Web.App\Pricing.Calculator.Web.App.csproj", "{DC69066B-9F90-4222-B213-DBC1FF5AA2F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC69066B-9F90-4222-B213-DBC1FF5AA2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC69066B-9F90-4222-B213-DBC1FF5AA2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC69066B-9F90-4222-B213-DBC1FF5AA2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC69066B-9F90-4222-B213-DBC1FF5AA2F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC69066B-9F90-4222-B213-DBC1FF5AA2F3} = {603E418C-8AAD-4EFE-80D3-474F7362C8AC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C7ED117-D6FC-4169-AB92-697726A6614C}
+	EndGlobalSection
+EndGlobal

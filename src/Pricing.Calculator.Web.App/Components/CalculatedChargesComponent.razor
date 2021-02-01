@@ -1,0 +1,87 @@
+﻿@using Pricing.Calculator.Web.App.Models.Response
+
+<div class="card" style="margin-top: 20px">
+    <div class="card-header text-white bg-info">
+        Calculation Result
+    </div>
+    <div class="card-body">
+        @if (Calculation == null)
+        {
+            <p><em>@((MarkupString)Status)</em></p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Ruleset ID</h6>
+                            <p class="card-text">@Calculation.RulesetId</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Version</h6>
+                            <p class="card-text">@Calculation.RulesetVersion</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Calculation ID</h6>
+                            <p class="card-text">@Calculation.Id</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Order ID</h6>
+                            <p class="card-text">@Calculation.Order.Id</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            @foreach (var item in Calculation.Order.Items)
+            {
+                var chargeNames = item.ChargeNames().ToList();
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Level</th>
+                            @foreach (var chargeName in chargeNames)
+                            {
+                                <th>@chargeName</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>Item</td>
+                            @foreach (var chargeName in chargeNames)
+                            {
+                                <td>@item.GetChargeAmount(chargeName)</td>
+                            }
+                        </tr>
+
+                        @foreach (var article in item.Articles)
+                        {
+                            <tr>
+                                <td>Article</td>
+                                @foreach (var chargeName in chargeNames)
+                                {
+                                    <td>@article.GetChargeAmount(chargeName)</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Status { get; set; } = string.Empty;
+
+    [Parameter]
+    public Calculation? Calculation { get; set; }
+}
