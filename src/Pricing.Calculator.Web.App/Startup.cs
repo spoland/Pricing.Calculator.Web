@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Pricing.Calculator.Web.App.Data;
 using Pricing.Calculator.Web.App.Forward;
 using Pricing.Calculator.Web.App.Services;
 using System;
@@ -25,7 +24,6 @@ namespace Pricing.Calculator.Web.App
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             
             services.AddHttpClient<IForwardCalculationService, ForwardCalculationService>(client =>
             {

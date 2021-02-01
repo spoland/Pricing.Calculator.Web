@@ -1,0 +1,185 @@
+﻿@page "/rulesets"
+
+<div class="row">
+    <div class="col-3">
+        <label class="form-label">Select Ruleset:</label>
+        <select class="form-control" @bind="CurrentRulesetId">
+            <option value=""></option>
+            <option value="SC:GB-DC-IE">SC:GB-DC-IE</option>
+            <option value="SC:GB-DT-EU">SC:GB-DT-EU</option>
+        </select>
+    </div>
+</div>
+
+<hr />
+
+<div hidden="@Ishidden">
+    <h4 class="mb-3 border-bottom">Main Attributes</h4>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Source Country</label>
+                        <input type="text" readonly class="form-control" value="GB">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Declaration Country</label>
+                        <input type="text" readonly class="form-control" value="IE">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" readonly class="form-control" value="-">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Postal Method</label>
+                        <input type="text" readonly class="form-control" value="-">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="mb-3 border-bottom">Charge Configurations</h4>
+
+    <div class="card mb-3">
+        <div class="card-header text-white bg-secondary">
+            Duty
+            <div class="float-right">
+                <button class="btn btn-success pt-0 pb-0 ml-2" type="button">Enable</button>
+                <button class="btn btn-warning pt-0 pb-0 ml-2" type="button">Disable</button>
+                <button class="btn btn-danger pt-0 pb-0 ml-2" type="button"><span class="oi oi-trash"></span></button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Charge Type</label>
+                        <input type="text" class="form-control" value="Value Based">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Rate</label>
+                        <input type="text" class="form-control" value="10%">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Deminimis Threshold</label>
+                        <input type="text" class="form-control" value="0">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Deminimis Base Charges</label>
+                        <select class="custom-select" multiple>
+                            <option value="item" selected>Item</option>
+                            <option value="delivery">Delivery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Base Charges</label>
+                        <select class="custom-select" multiple>
+                            <option value="item" selected>Item</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="duty">Duty</option>
+                            <option value="vat">Vat</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header text-white bg-secondary">
+            Vat
+            <div class="float-right">
+                <button class="btn btn-success pt-0 pb-0 ml-2" type="button">Enable</button>
+                <button class="btn btn-warning pt-0 pb-0 ml-2" type="button">Disable</button>
+                <button class="btn btn-danger pt-0 pb-0 ml-2" type="button"><span class="oi oi-trash"></span></button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Charge Type</label>
+                        <input type="text" class="form-control" value="Value Based">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Rate</label>
+                        <input type="text" class="form-control" value="15%">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Deminimis Threshold</label>
+                        <input type="text" class="form-control" value="1000">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Deminimis Base Charges</label>
+                        <select class="custom-select" multiple>
+                            <option value="item" selected>Item</option>
+                            <option value="delivery">Delivery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Base Charges</label>
+                        <select class="custom-select" multiple>
+                            <option value="item" selected>Item</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="duty" selected>Duty</option>
+                            <option value="vat">Vat</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="float-right mb-3">
+        <button class="btn btn-info" type="button">Preview Changes</button>
+        <button class="btn btn-primary" type="button">Publish Changes</button>
+    </div>
+</div>
+
+@code {
+
+    private string _currentRulesetId = string.Empty;
+    private bool Ishidden = true;
+
+    public string CurrentRulesetId {
+        get { return _currentRulesetId; }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                Ishidden = true;
+            else
+                Ishidden = false;
+
+            _currentRulesetId = value;
+        }
+    }
+}
