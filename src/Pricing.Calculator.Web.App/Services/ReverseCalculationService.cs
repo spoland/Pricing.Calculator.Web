@@ -21,7 +21,7 @@ namespace Pricing.Calculator.Web.App.Forward
 
         public async Task<OperationResult> Calculate(Models.Request.Reverse.Order request, CancellationToken cancellationToken)
         {
-            var response = await _httpClient.PostAsJsonAsync("/api/v1/Actions/calculate/reverse", request, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync("/api/1.0/Actions/calculate/reverse", request, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {

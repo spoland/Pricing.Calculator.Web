@@ -22,7 +22,7 @@ namespace Pricing.Calculator.Web.App.Forward
 
         public async Task<OperationResult> Calculate(Models.Request.Forward.Order request, CancellationToken cancellationToken)
         {
-            var response = await _httpClient.PostAsJsonAsync("/api/v1/Actions/calculate/forward", request, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync("/api/1.0/Actions/calculate/forward", request, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
