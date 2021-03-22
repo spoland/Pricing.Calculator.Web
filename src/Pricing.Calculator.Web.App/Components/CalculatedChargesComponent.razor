@@ -73,6 +73,20 @@
                     </tbody>
                 </table>
             }
+
+            <hr />
+
+
+            <div class="card-header text-white bg-info">
+                Calculation Events
+            </div>
+            <div class="card-body">
+
+                @foreach (var item in Calculation.Events)
+                {
+                    @item
+                }
+            </div>
         }
     </div>
 </div>
