@@ -4,6 +4,8 @@ namespace Pricing.Calculator.Web.App.Models.Request
 {
     public class Item
     {
+        public string Id { get; set; } = System.Guid.NewGuid().ToString();
+
         [Range(1, double.MaxValue, ErrorMessage = "The {0} field must be at least {1}.")]
         public int Quantity { get; set; }
 
@@ -21,5 +23,9 @@ namespace Pricing.Calculator.Web.App.Models.Request
 
         [Required]
         public Price InputDeliveryPrice { get; set; } = new Price();
+
+        public string HsCode { get; set; } = System.Guid.NewGuid().ToString();
+
+        public string CountryOfOrigin { get; set; } = "CN";
     }
 }
