@@ -9,6 +9,7 @@
 <EditForm Model="@order" OnValidSubmit="@SubmitRequest">
 
     <ObjectGraphDataAnnotationsValidator />
+    <GraphComponent />
     <ForwardOrderFormComponent Order="@order" />
     <CalculatedChargesComponent Calculation="@calculation" Status="@status" />
 
