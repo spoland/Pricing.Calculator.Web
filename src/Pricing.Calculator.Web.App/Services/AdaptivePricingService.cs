@@ -14,10 +14,11 @@ namespace Pricing.Calculator.Web.App.Services
             _httpClient = httpClient;
         }
 
-        public async Task<HistoricAdaptivePricing?> Get()
+        public async Task<HistoricAdaptivePricing> Get(string countryIso)
         {
-            var data = await _httpClient.GetFromJsonAsync<HistoricAdaptivePricing>("/api/1.0/Actions/calculate/AdaptivePricingHistory");
-            return data;
+            var data = await _httpClient.GetFromJsonAsync<HistoricAdaptivePricing>($"/api/1.0/Actions/calculate/AdaptivePricingHistory?countryIso={countryIso}");
+
+            return data ?? new HistoricAdaptivePricing();
         }
     }
 }

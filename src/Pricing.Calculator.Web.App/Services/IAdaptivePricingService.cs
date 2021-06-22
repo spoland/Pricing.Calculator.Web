@@ -5,6 +5,6 @@ namespace Pricing.Calculator.Web.App.Services
 {
     public interface IAdaptivePricingService
     {
-        Task<HistoricAdaptivePricing?> Get();
+        Task<HistoricAdaptivePricing> Get(string countryIso);
     }
 }

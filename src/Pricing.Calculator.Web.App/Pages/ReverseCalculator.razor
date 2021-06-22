@@ -29,7 +29,7 @@
         if (result.Successful)
         {
             calculation = (result as OperationResult<Calculation>)?.Data;
-            adaptivePricing = await AdaptivePricingService.Get();
+            adaptivePricing = await AdaptivePricingService.Get(order.DeclarationCountryIso);
         }
         else
         {
