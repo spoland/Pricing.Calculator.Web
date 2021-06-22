@@ -49,6 +49,8 @@ namespace Pricing.Calculator.Web.App
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDYyMjAyQDMxMzkyZTMxMmUzMG9XNjVPUXY5dDR4aVArUzJwZWpOWFh1Yk8rVGxlYjZuYTAvSG8wRG1tY1k9");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
