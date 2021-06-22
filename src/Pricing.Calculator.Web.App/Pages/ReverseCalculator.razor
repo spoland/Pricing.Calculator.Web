@@ -9,7 +9,7 @@
 <EditForm Model="@order" OnValidSubmit="@SubmitRequest">
 
     <ObjectGraphDataAnnotationsValidator />
-    <GraphComponent />
+    <GraphComponent Data="@adaptivePricing" />
     <ReverseOrderFormComponent Order="@order" />
     <CalculatedChargesComponent Calculation="@calculation" Status="@status" />
 
@@ -19,7 +19,7 @@
 
     private Calculation? calculation;
     private Models.Request.Reverse.Order order = new Models.Request.Reverse.Order();
-    private HistoricAdaptivePricing? adaptivePricing = new HistoricAdaptivePricing();
+    private HistoricAdaptivePricing adaptivePricing = new HistoricAdaptivePricing();
 
     private string? status = "Waiting...";
 
