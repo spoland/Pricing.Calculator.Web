@@ -34,6 +34,11 @@ namespace Pricing.Calculator.Web.App
             {
                 client.BaseAddress = new Uri(Configuration["CalculatorApi:BaseAddress"]);
             });
+
+            services.AddHttpClient<IAdaptivePricingService, AdaptivePricingService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["CalculatorApi:BaseAddress"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

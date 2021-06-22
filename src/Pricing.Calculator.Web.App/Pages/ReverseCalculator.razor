@@ -4,6 +4,7 @@
 @using Pricing.Calculator.Web.App.Models.Response
 
 @inject IReverseCalculationService CalculationService
+@inject IAdaptivePricingService AdaptivePricingService
 
 <EditForm Model="@order" OnValidSubmit="@SubmitRequest">
 
@@ -15,8 +16,10 @@
 
 @code {
 
-    private Models.Request.Reverse.Order order = new Models.Request.Reverse.Order();
     private Calculation? calculation;
+    private Models.Request.Reverse.Order order = new Models.Request.Reverse.Order();
+    private HistoricAdaptivePricing? adaptivePricing = new HistoricAdaptivePricing();
+
     private string? status = "Waiting...";
 
     private async Task SubmitRequest()
@@ -24,7 +27,10 @@
         var result = await CalculationService.Calculate(order, default);
 
         if (result.Successful)
+        {
             calculation = (result as OperationResult<Calculation>)?.Data;
+            adaptivePricing = await AdaptivePricingService.Get();
+        }
         else
         {
             calculation = null;
