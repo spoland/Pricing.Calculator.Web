@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Pricing.Calculator.Web.App.Forward;
 using Pricing.Calculator.Web.App.Services;
 using System;
+using Syncfusion.Blazor;
 
 namespace Pricing.Calculator.Web.App
 {
@@ -24,7 +25,11 @@ namespace Pricing.Calculator.Web.App
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+            services.AddSyncfusionBlazor();
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 65536;
+            });
+
             services.AddHttpClient<IForwardCalculationService, ForwardCalculationService>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["CalculatorApi:BaseAddress"]);

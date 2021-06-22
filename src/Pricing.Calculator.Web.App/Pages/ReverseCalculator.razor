@@ -9,6 +9,7 @@
 <EditForm Model="@order" OnValidSubmit="@SubmitRequest">
 
     <ObjectGraphDataAnnotationsValidator />
+    <GraphComponent />
     <ReverseOrderFormComponent Order="@order" />
     <CalculatedChargesComponent Calculation="@calculation" Status="@status" />
 
