@@ -5,9 +5,9 @@
     <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
     <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
     <ChartSeriesCollection>
-        <ChartSeries DataSource="@Data.AdaptivePricingData" Name="Adaptive Uplift Estimate" XName="OrderId" YName="AdaptiveUpliftEstimate" Fill="blue" Type="ChartSeriesType.Line">
+        <ChartSeries DataSource="@Data.AdaptivePricingData" Name="Adaptive Uplift Estimate" XName="Timestamp" YName="AdaptiveUpliftEstimate" Fill="blue" Type="ChartSeriesType.Line">
         </ChartSeries>
-        <ChartSeries DataSource="@Data.AdaptivePricingData" Name="Real Uplift" XName="OrderId" YName="RealUplift" Fill="red" Type="ChartSeriesType.Line">
+        <ChartSeries DataSource="@Data.AdaptivePricingData" Name="Real Uplift" XName="Timestamp" YName="RealUplift" Fill="red" Type="ChartSeriesType.Line">
         </ChartSeries>
     </ChartSeriesCollection>
     <ChartLegendSettings Visible="true" />

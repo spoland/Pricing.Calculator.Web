@@ -40,5 +40,7 @@ namespace Pricing.Calculator.Web.App.Models.Response
         public decimal DiffAdaptivePercentage { get; set; }
 
         public decimal DiffFixedPercentage { get; set; }
+
+        public long Timestamp { get; set; }
     }
 }
