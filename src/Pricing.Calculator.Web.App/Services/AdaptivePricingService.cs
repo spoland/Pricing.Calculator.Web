@@ -19,7 +19,7 @@ namespace Pricing.Calculator.Web.App.Services
         public async Task<HistoricAdaptivePricing> Get(string countryIso)
         {
             var data = await _httpClient.GetFromJsonAsync<HistoricAdaptivePricing>($"/api/1.0/Actions/calculate/AdaptivePricingHistory?countryIso={countryIso}");
-            data.AdaptivePricingData = data.AdaptivePricingData.OrderBy(d => d.Timestamp).ToList();
+            data.AdaptivePricingData = data.AdaptivePricingData.OrderBy(d => d.Timestamp).Reverse().ToList();
             return data ?? new HistoricAdaptivePricing();
         }
     }
